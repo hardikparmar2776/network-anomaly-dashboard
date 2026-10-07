@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Anomaly Detection System Report</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 20mm;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: #2d3748;
+            line-height: 1.6;
+            margin: 0;
+            padding: 24px;
+            background-color: #ffffff;
+        }
+
+        .header {
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 16px;
+            margin-bottom: 28px;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #0f172a;
+            margin: 0 0 6px 0;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: #64748b;
+            margin: 0;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 14px 18px;
+            margin-bottom: 28px;
+            font-size: 13px;
+        }
+
+        .meta-item {
+            color: #475569;
+        }
+
+        .meta-item strong {
+            color: #0f172a;
+        }
+
+        h2 {
+            font-size: 16px;
+            color: #0f172a;
+            border-bottom: 1px solid #cbd5e1;
+            padding-bottom: 6px;
+            margin-top: 24px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        p {
+            font-size: 13.5px;
+            margin-top: 0;
+            margin-bottom: 14px;
+            color: #334155;
+        }
+
+        ul {
+            margin: 0 0 16px 0;
+            padding-left: 20px;
+            font-size: 13.5px;
+            color: #334155;
+        }
+
+        li {
+            margin-bottom: 6px;
+        }
+
+        .code-block {
+            background-color: #f1f5f9;
+            border-left: 3px solid #0284c7;
+            padding: 10px 14px;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 12px;
+            color: #0f172a;
+            margin-bottom: 16px;
+            white-space: pre-wrap;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+
+        th,
+        td {
+            border: 1px solid #e2e8f0;
+            padding: 8px 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f8fafc;
+            color: #0f172a;
+            font-weight: 600;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 6px;
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 4px;
+        }
+
+        .badge-normal {
+            background-color: #dcfce7;
+            color: #15803d;
+        }
+
+        .badge-anomaly {
+            background-color: #fee2e2;
+            color: #b91c1c;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>Real-Time Network Anomaly Detection System</h1>
+        <p class="subtitle">Technical Implementation & Architecture Summary</p>
+    </div>
+
+    <div class="meta-grid">
+        <div class="meta-item"><strong>Project Type:</strong> Full-Stack ML Web Application</div>
+        <div class="meta-item"><strong>ML Model:</strong> Random Forest Classifier</div>
+        <div class="meta-item"><strong>Backend Protocol:</strong> FastAPI & WebSockets</div>
+        <div class="meta-item"><strong>Frontend Framework:</strong> React (Vite) + Recharts</div>
+    </div>
+
+    <h2>1. Executive Summary</h2>
+    <p>
+        This project presents a real-time network security monitoring system capable of continuously inspecting incoming
+        packet data streams, identifying statistical anomalies, and rendering live telemetric diagnostics on a web
+        dashboard. By pairing a Scikit-Learn Machine Learning pipeline with asynchronous WebSocket streaming, the
+        platform delivers zero-latency threat detection for security operators.
+    </p>
+
+    <h2>2. System Architecture</h2>
+    <div class="code-block">
+        [ Incoming Traffic Data ]
+        │
+        ▼
+        [ FastAPI Backend ] ──► [ Random Forest Model ] ──► Inference (0: Normal / 1: Anomaly)
+        │
+        ▼ (WebSocket Stream: ws://localhost:8000/ws/traffic)
+        [ React Dashboard ] ──► Real-Time Recharts Telemetry + Packet Audit Feed
+    </div>
+
+    <h2>3. Machine Learning & Feature Telemetry</h2>
+    <p>The network classifier evaluates live packet features against a trained Random Forest model:</p>
+    <ul>
+        <li><strong>Sttl (Source Time to Live):</strong> Measures hop limits to detect route spoofing and network
+            scanning.</li>
+        <li><strong>Proto (Protocol Identifier):</strong> Maps connection channels (TCP, UDP, ICMP).</li>
+        <li><strong>Sload (Source Load):</strong> Tracks bit-rate metrics to flag Denial of Service (DoS) volume surges.
+        </li>
+        <li><strong>Spkts / Dpkts:</strong> Monitors packet balance ratios across endpoints.</li>
+    </ul>
+
+    <h2>4. Core Dashboard Components</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Component</th>
+                <th>Technology</th>
+                <th>Functionality</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Live Bandwidth Chart</strong></td>
+                <td>Recharts / React</td>
+                <td>Plots rolling source load (Sload) traffic over time.</td>
+            </tr>
+            <tr>
+                <td><strong>Packet Inspection Feed</strong></td>
+                <td>HTML5 / CSS</td>
+                <td>Displays real-time packet logs with color-coded threat badges.</td>
+            </tr>
+            <tr>
+                <td><strong>Stream Service</strong></td>
+                <td>FastAPI / WebSockets</td>
+                <td>Pushes JSON-encoded predictions every second.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>5. Status Summary</h2>
+    <p>
+        Sample output status rendered by the real-time classification engine during evaluation:
+    </p>
+    <ul>
+        <li>Standard TCP Handshake Stream — <span class="badge badge-normal">NORMAL</span></li>
+        <li>Elevated UDP Packet Rate Burst — <span class="badge badge-anomaly">ANOMALY</span></li>
+    </ul>
+
+</body>
+
+</html>
